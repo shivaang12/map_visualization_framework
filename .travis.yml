@@ -1,0 +1,46 @@
+# We need a decent ubuntu dist
+sudo: required
+dist: bionic
+
+# Modern cpp settings from
+#  http://genbattle.bitbucket.org/blog/2016/01/17/c++-travis-ci/
+language: cpp
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - george-edison55-precise-backports
+          packages:
+            - g++-5
+            - cmake
+            - cmake-data
+      env: COMPILER=g++-5
+
+before_install:
+
+install:
+
+before_script:
+  - sudo apt-get install git curl libsdl2-mixer-2.0-0 libsdl2-image-2.0-0 libsdl2-2.0-0
+  - |
+    travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.8.tar.gz | tar xz
+    cd SDL2-2.0.8
+    ./configure
+    make
+    sudo make install
+    cd ..
+script:
+  - export CXX=$COMPILER;
+  - mkdir build
+  - cd build
+  - cmake
+  - make
+
+after_success:
+
+notifications:
+  email: false
