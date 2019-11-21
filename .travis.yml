@@ -37,7 +37,7 @@ script:
   - export CXX=$COMPILER;
   - mkdir build
   - cd build
-  - cmake
+  - cmake ../
   - make
 
 after_success:
