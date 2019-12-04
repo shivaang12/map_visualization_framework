@@ -9,11 +9,14 @@ INCLUDE(FindPkgConfig)
 
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
 
-add_executable(shell-app src/main.cpp src/frame.cpp)
+add_library(${PROJECT_NAME} STATIC
+    include/frame.hpp
+    src/frame.cpp
+)
 
-target_include_directories(shell-app PUBLIC
+target_include_directories(${PROJECT_NAME} PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}/include
     ${SDL2_INCLUDE_DIRS}
 )
 
-target_link_libraries(shell-app ${SDL2_LIBRARIES} astar)
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} astar)

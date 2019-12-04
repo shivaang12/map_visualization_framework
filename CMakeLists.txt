@@ -7,4 +7,5 @@ project (main_project)
 
 add_subdirectory(astar)
 add_subdirectory(map_viz_framework)
+add_subdirectory(playground)
 
