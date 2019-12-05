@@ -20,6 +20,11 @@ Framework::Framework(int width, int height):
     start_(0),
     goal_(0) {}
 
+Framework::~Framework() {
+    SDL_DestroyRenderer(sdl_renderer_);
+    SDL_DestroyWindow(sdl_window_);
+}
+
 Framework::Framework():
     width_(10),   // Default
     height_(10),    // Default

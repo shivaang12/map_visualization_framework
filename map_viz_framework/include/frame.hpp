@@ -19,6 +19,8 @@ public:
     Framework();
     Framework(const Framework&)=delete;
 
+    ~Framework();
+
     void show();
     void loadObstacles(std::vector<int> &points, std::string color="red");
     void initFramework();
