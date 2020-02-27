@@ -10,7 +10,6 @@ INCLUDE(FindPkgConfig)
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
 
 add_library(${PROJECT_NAME} STATIC
-    include/frame.hpp
     src/frame.cpp
 )
 

@@ -1,6 +1,6 @@
 #include <future>
 #include <iostream>
-#include <frame.hpp>
+#include <map_core/frame.hpp>
 
 namespace map_viz {
 point_2d::point_2d(int x, int y) {

@@ -7,7 +7,7 @@
 #include <iostream>
 #include <queue>
 #include <memory>
-#include <astar.hpp>
+#include <astar/astar.hpp>
 
 namespace planner {
 Astar::Astar() :
