@@ -3,7 +3,7 @@ set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
-project (map_viz_framework)
+project (map_core)
 
 INCLUDE(FindPkgConfig)
 
