@@ -11,4 +11,4 @@ PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
 
 add_executable(${PROJECT_NAME} src/main.cpp)
 
-target_link_libraries(${PROJECT_NAME} map_viz_framework astar)
+target_link_libraries(${PROJECT_NAME} map_viz_framework utils global_planner)

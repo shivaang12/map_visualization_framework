@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include <global_planner.hpp>
+#include <utils/global_planner.hpp>
 
 namespace planner {
 

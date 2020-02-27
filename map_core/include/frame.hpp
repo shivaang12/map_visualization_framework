@@ -1,9 +1,9 @@
 #pragma once
-#include "SDL.h"
+#include "SDL2/SDL.h"
 #include <string>
 #include <vector>
 #include <memory>
-#include <global_planner.hpp>
+#include <utils/global_planner.hpp>
 
 namespace map_viz{
 struct point_2d {
