@@ -1,8 +1,6 @@
 #include <future>
 #include <iostream>
-#include <thread>
-#include <chrono>
-#include <map_core/frame.hpp>
+#include "map_core/frame.hpp"
 
 namespace map_viz {
 point_2d::point_2d(int x, int y) {
@@ -59,8 +57,7 @@ Framework::updateGlobalPlanner(const unsigned int time) {
     drawPointOnScreen(point, "green");
     updateDisplay();
 
-    // SDL_Delay(time);
-    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    SDL_Delay(time);
 
     if (!is_polling_) {
       break;
