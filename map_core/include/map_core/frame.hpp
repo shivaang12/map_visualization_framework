@@ -13,11 +13,6 @@ struct point_2d {
            int y);
 };
 
-enum class DrawFlags {
-  PROGRESSIVE,
-  NORMAL,
-};
-
 class Framework {
 public:
 
