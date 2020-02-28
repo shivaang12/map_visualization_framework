@@ -13,6 +13,11 @@ struct point_2d {
            int y);
 };
 
+enum class DrawFlags {
+  PROGRESSIVE,
+  NORMAL,
+};
+
 class Framework {
 public:
 
@@ -30,11 +35,15 @@ public:
   void initFramework();
   void spinCurrentState();
   void setGlobalPlanner(std::shared_ptr<planner::GlobalPlanner>gp_ptr);
+  void globalPlannerDrawRate(unsigned int rate);
 
 private:
 
-  void drawOnScreen(std::vector<int>& points,
-                    std::string       color);
+  void updateGlobalPlanner(const unsigned int time);
+  void drawPointOnScreen(int         points,
+                         std::string color);
+  void drawVectorOnScreen(std::vector<int>& points,
+                          std::string       color);
   void convertCellToCoordinate(int  cell,
                                int& x,
                                int& y);
@@ -52,6 +61,7 @@ private:
   SDL_Window *sdl_window_;
   bool is_polling_;
   bool is_obstacle_info_loaded_;
+  unsigned int gp_draw_time_;
   std::shared_ptr<planner::GlobalPlanner>gp_ptr_;
   int start_;
   int goal_;

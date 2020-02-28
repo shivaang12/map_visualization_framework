@@ -29,6 +29,7 @@ int main() {
     fw.initFramework();
     planner_->setStartPoint(0, 0);
     planner_->setGoalPoint((width / 2) + 65, (height / 2) - 30);
+    fw.globalPlannerDrawRate(30);
     fw.loadObstacles(points, std::string("red"));
     fw.spinCurrentState();
   }

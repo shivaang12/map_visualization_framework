@@ -1,5 +1,7 @@
 #include <future>
 #include <iostream>
+#include <thread>
+#include <chrono>
 #include <map_core/frame.hpp>
 
 namespace map_viz {
@@ -31,6 +33,7 @@ Framework::Framework() :
   sdl_window_(NULL),
   is_polling_(true),
   is_obstacle_info_loaded_(false),
+  gp_draw_time_(0),
   gp_ptr_(nullptr),
   start_(0),
   goal_(0) {}
@@ -49,14 +52,31 @@ Framework::initFramework() {
 }
 
 void
+Framework::updateGlobalPlanner(const unsigned int time) {
+  auto path = gp_ptr_->makePlan();
+
+  for (auto& point : path) {
+    drawPointOnScreen(point, "green");
+    updateDisplay();
+
+    // SDL_Delay(time);
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+
+    if (!is_polling_) {
+      break;
+    }
+  }
+}
+
+void
+Framework::globalPlannerDrawRate(unsigned int rate) {
+  gp_draw_time_ = rate;
+}
+
+void
 Framework::spinCurrentState() {
   std::cout << "[SPIN] STARTING\n";
   std::vector<int> path;
-
-  if (gp_ptr_) {
-    path = gp_ptr_->makePlan();
-    drawOnScreen(path, "green");
-  }
 
   updateDisplay();
   auto fut = std::async([](bool& is_polling_) {
@@ -71,11 +91,17 @@ Framework::spinCurrentState() {
       }
     }, std::ref(this->is_polling_));
 
+  auto gp_draw_future = std::async(std::launch::async,
+                                   &Framework::updateGlobalPlanner,
+                                   this,
+                                   gp_draw_time_);
+
   while (is_polling_) {
     SDL_Delay(10);
   }
 
   fut.wait();
+  gp_draw_future.wait();
 }
 
 void
@@ -96,16 +122,23 @@ Framework::loadObstacles(std::vector<int>& points, std::string color) {
   if (gp_ptr_) {
     gp_ptr_->loadObstacleInfo(obst_ptr);
   }
-  drawOnScreen(points, color);
+  drawVectorOnScreen(points, color);
+}
+
+void Framework::drawVectorOnScreen(std::vector<int>& points,
+                                   std::string       color)
+{
+  setRendererColor(color);
+
+  for (auto& point : points) drawPointWithoutColor(point);
+
+  resetRendererColor();
 }
 
 void
-Framework::drawOnScreen(std::vector<int>& points, std::string color) {
+Framework::drawPointOnScreen(int point, std::string color) {
   setRendererColor(color);
-
-  for (auto& point : points) {
-    drawPointWithoutColor(point);
-  }
+  drawPointWithoutColor(point);
   resetRendererColor();
 }
 
