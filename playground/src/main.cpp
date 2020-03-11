@@ -3,11 +3,11 @@
 #include "map_core/frame.hpp"
 #include "astar/astar.hpp"
 
-void generateCirclePoints(int               center_x,
-                          int               center_y,
-                          int               radius,
+void generateCirclePoints(int center_x,
+                          int center_y,
+                          int radius,
                           std::vector<int>& points,
-                          int               width) {
+                          int width) {
   for (int i = center_x - radius; i < center_x + radius; i++) {
     for (int j = center_y - radius; j < center_y + radius; j++) {
       if (hypot(i - center_x, j - center_y) <= radius) {

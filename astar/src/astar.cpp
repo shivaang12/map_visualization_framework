@@ -32,12 +32,12 @@ void Astar::setGoalPoint(int x, int y) {
   std::cout << "[ASTAR] GOAL is " << goal_ << '\n';
 }
 
-void Astar::convertCellToCoordinate(int cell, int& x, int& y) {
+void Astar::convertCellToCoordinate(const int& cell, int& x, int& y) const {
   x = cell % width_;
   y = cell / width_;
 }
 
-void Astar::convertCoordinateToCell(int x, int y, int& cell) {
+void Astar::convertCoordinateToCell(const int& x, const int& y, int& cell) const {
   cell = (y * width_) + x;
 }
 
@@ -100,7 +100,7 @@ std::vector<int>Astar::makePlan() {
   return path;
 }
 
-std::vector<int>Astar::getNeighbors(int current_cell) {
+std::vector<int>Astar::getNeighbors(const int& current_cell) const {
   int current_x, current_y;
 
   convertCellToCoordinate(current_cell, current_x, current_y);
@@ -135,7 +135,7 @@ std::vector<int>Astar::getNeighbors(int current_cell) {
   return return_vector;
 }
 
-bool Astar::isValid(int cell) {
+bool Astar::isValid(const int& cell) const {
   if (obstacle_info_ptr_) {
     return !(*obstacle_info_ptr_)[cell];
   }
@@ -146,7 +146,7 @@ void Astar::loadObstacleInfo(std::shared_ptr<std::vector<bool> >obstacle_info) {
   obstacle_info_ptr_ = obstacle_info;
 }
 
-double Astar::getHCost(int cell) {
+double Astar::getHCost(const int& cell) const {
   int cell_x, cell_y;
   int goal_x, goal_y;
 
@@ -156,7 +156,7 @@ double Astar::getHCost(int cell) {
   return std::hypot(cell_x - goal_x, cell_y - goal_y);
 }
 
-double Astar::calcGCost(int cell1, int cell2) {
+double Astar::calcGCost(const int& cell1, const int& cell2) const {
   int cell1_x, cell1_y;
   int cell2_x, cell2_y;
 

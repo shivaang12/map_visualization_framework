@@ -14,30 +14,30 @@ class Astar : public GlobalPlanner {
 public:
 
   Astar();
-  void                             initialize(int width,
-                                              int height);
-  void                             setStartPoint(int start_x,
-                                                 int start_y) override;
-  void                             setGoalPoint(int goal_x,
-                                                int goal_y) override;
+  void                             initialize(const int width,
+                                              const int height);
+  void                             setStartPoint(const int start_x,
+                                                 const int start_y) override;
+  void                             setGoalPoint(const int goal_x,
+                                                const int goal_y) override;
   std::vector<int>                 makePlan() override;
   void                             loadObstacleInfo(
-    std::shared_ptr<std::vector<bool> >obstacle_info) override;
+    const std::shared_ptr<std::vector<bool> >obstacle_info) override;
   std::vector<std::pair<int, int> >makePlanCoordinate();
 
 private:
 
-  double          calcGCost(int cell1,
-                            int cell2);
-  double          getHCost(int cell);
-  bool            isValid(int cell);
-  std::vector<int>getNeighbors(int current_cell);
-  void            convertCoordinateToCell(int  x,
-                                          int  y,
-                                          int& cell);
-  void            convertCellToCoordinate(int  cell,
+  double          calcGCost(const int& cell1,
+                            const int& cell2) const;
+  double          getHCost(const int& cell) const;
+  bool            isValid(const int& cell) const;
+  std::vector<int>getNeighbors(const int& current_cell) const;
+  void            convertCoordinateToCell(const int& x,
+                                          const int& y,
+                                          int& cell) const;
+  void            convertCellToCoordinate(const int& cell,
                                           int& x,
-                                          int& y);
+                                          int& y) const;
 
   int width_;
   int height_;

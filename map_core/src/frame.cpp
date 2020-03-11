@@ -39,7 +39,11 @@ Framework::Framework() :
 void
 Framework::initFramework() {
   SDL_Init(SDL_INIT_VIDEO);
-  SDL_CreateWindowAndRenderer(width_ - 1, height_ - 1, 0, &sdl_window_, &sdl_renderer_);
+  SDL_CreateWindowAndRenderer(width_ - 1,
+                              height_ - 1,
+                              0,
+                              &sdl_window_,
+                              &sdl_renderer_);
   SDL_SetRenderDrawColor(sdl_renderer_, 0, 0, 0, 0);
   SDL_RenderClear(sdl_renderer_);
   SDL_RenderPresent(sdl_renderer_);
@@ -108,8 +112,10 @@ Framework::show() {
 }
 
 void
-Framework::loadObstacles(std::vector<int>& points, std::string color) {
-  std::shared_ptr<std::vector<bool> > obst_ptr(new std::vector<bool>(width_ *height_, 0));
+Framework::loadObstacles(const std::vector<int>& points, std::string color) {
+  std::shared_ptr<std::vector<bool> > obst_ptr(new std::vector<bool>(
+                                                 width_ *height_,
+                                                 0));
 
   for (auto& point : points) {
     // drawPointWithoutColor(point);
@@ -122,8 +128,8 @@ Framework::loadObstacles(std::vector<int>& points, std::string color) {
   drawVectorOnScreen(points, color);
 }
 
-void Framework::drawVectorOnScreen(std::vector<int>& points,
-                                   std::string       color)
+void Framework::drawVectorOnScreen(const std::vector<int>& points,
+                                   std::string             color)
 {
   setRendererColor(color);
 
@@ -140,7 +146,7 @@ Framework::drawPointOnScreen(int point, std::string color) {
 }
 
 void
-Framework::drawPointWithoutColor(int& point) {
+Framework::drawPointWithoutColor(const int& point) {
   int x, y;
 
   convertCellToCoordinate(point, x, y);
@@ -169,13 +175,13 @@ Framework::updateDisplay() {
 }
 
 void
-Framework::convertCellToCoordinate(int cell, int& x, int& y) {
+Framework::convertCellToCoordinate(const int& cell, int& x, int& y) {
   x = cell % width_;
   y = cell / width_;
 }
 
 void
-Framework::convertCoordinateToCell(int x, int y, int& cell) {
+Framework::convertCoordinateToCell(const int& x, const int& y, int& cell) {
   cell = (y * width_) + x;
 }
 

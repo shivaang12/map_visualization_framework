@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MAP_CORE_INCLUDE_MAP_CORE_FRAME_HPP_
+#define MAP_CORE_INCLUDE_MAP_CORE_FRAME_HPP_
+
 #include <SDL2/SDL.h>
 #include <string>
 #include <vector>
@@ -25,8 +27,8 @@ public:
   ~Framework();
 
   void show();
-  void loadObstacles(std::vector<int>& points,
-                     std::string       color = "red");
+  void loadObstacles(const std::vector<int>& points,
+                     std::string color = "red");
   void initFramework();
   void spinCurrentState();
   void setGlobalPlanner(std::shared_ptr<planner::GlobalPlanner>gp_ptr);
@@ -35,19 +37,19 @@ public:
 private:
 
   void updateGlobalPlanner(const unsigned int time);
-  void drawPointOnScreen(int         points,
+  void drawPointOnScreen(int points,
                          std::string color);
-  void drawVectorOnScreen(std::vector<int>& points,
-                          std::string       color);
-  void convertCellToCoordinate(int  cell,
+  void drawVectorOnScreen(const std::vector<int>& points,
+                          std::string color);
+  void convertCellToCoordinate(const int& cell,
                                int& x,
                                int& y);
-  void convertCoordinateToCell(int  x,
-                               int  y,
+  void convertCoordinateToCell(const int& x,
+                               const int& y,
                                int& cell);
   void updateDisplay();
   void setRendererColor(std::string& color);
-  void drawPointWithoutColor(int& point_2d);
+  void drawPointWithoutColor(const int& point_2d);
   void resetRendererColor();
 
   int width_;
@@ -61,4 +63,5 @@ private:
   int start_;
   int goal_;
 };
-}
+} // namespace map_viz
+#endif // MAP_CORE_INCLUDE_MAP_CORE_FRAME_HPP_
