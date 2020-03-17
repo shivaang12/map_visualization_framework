@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ASTAR_INCLUDE_ASTAR_ASTAR_CPP
+#define ASTAR_INCLUDE_ASTAR_ASTAR_CPP
 #include <vector>
 #include <memory>
 #include "utils/global_planner.hpp"
@@ -48,3 +49,4 @@ private:
   std::shared_ptr<std::vector<bool> >obstacle_info_ptr_;
 };
 }
+#endif //ASTAR_INCLUDE_ASTAR_ASTAR_CPP

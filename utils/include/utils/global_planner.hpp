@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UTILS_INCLUDE_UTILS_GLOBAL_PLANNER_HPP
+#define UTILS_INCLUDE_UTILS_GLOBAL_PLANNER_HPP
 #include <vector>
 
 namespace planner {
@@ -19,3 +20,4 @@ public:
     0;
 };
 }
+#endif //UTILS_INCLUDE_UTILS_GLOBAL_PLANNER_HPP
