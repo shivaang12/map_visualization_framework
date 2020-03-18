@@ -194,4 +194,12 @@ std::vector<std::pair<int, int> >Astar::makePlanCoordinate() {
   }
   return return_vector;
 }
+
+void Astar::getStartPoint(int& start_x, int& start_y) const {
+    convertCellToCoordinate(start_, start_x, start_y);
+  }
+
+void Astar::getGoalPoint(int& goal_x, int& goal_y) const {
+    convertCellToCoordinate(goal_, goal_x, goal_y);
+  }
 }

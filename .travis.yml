@@ -39,6 +39,7 @@ script:
   - cd build
   - cmake ../
   - make
+  - ./astar/test/astar-test
 
 after_success:
 

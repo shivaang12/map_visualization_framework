@@ -112,8 +112,6 @@ public:
    */
   std::vector<std::pair<int, int> >makePlanCoordinate();
 
-private:
-
   /**
    * @brief Method calculate cost-to-come (G) for Astar
    *
@@ -175,7 +173,21 @@ private:
   void convertCellToCoordinate(const int& cell,
                                int& x,
                                int& y) const;
-
+  /**
+   * @brief Getter method gets start point
+   * 
+   * @param[out] start_x X coordinate for start point
+   * @param[out] start_y Y coordinate for start point
+   */
+  void getStartPoint(int& start_x, int& start_y) const;
+  /**
+   * @brief Getter method gets goal point
+   * 
+   * @param[out] goal_x X coordinate for goal point
+   * @param[out] goal_y Y coordinate for goal point
+   */
+  void getGoalPoint(int& goal_x, int& goal_y) const;
+private:
   int width_;
   int height_;
 
