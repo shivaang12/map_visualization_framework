@@ -66,6 +66,10 @@ public:
    */
   Framework(const Framework&) = delete;
   /**
+   * @brief Deleted copy constructor
+   */
+  Framework& operator=(const Framework&) = delete;
+  /**
    * @brief Destructor
    */
   ~Framework();
