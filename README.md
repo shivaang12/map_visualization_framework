@@ -1,4 +1,8 @@
-# Map Vizualization Framework [![Build Status](https://travis-ci.org/shivaang12/map_visualization_framework.svg?branch=master)](https://travis-ci.org/shivaang12/map_visualization_framework)
+# Map Vizualization Framework
+|  Platform         |    badge              |
+|-------------------|-----------------------|
+|  Travis           |    [![Travis Build Status](https://travis-ci.org/shivaang12/map_visualization_framework.svg?branch=master)](https://travis-ci.org/shivaang12/map_visualization_framework)       |
+|  Github Actions   |    ![Actions Build Status](https://github.com/shivaang12/map_visualization_framework/workflows/C/C++%20CI/badge.svg)    |
 
 A vizualization framework for people who are working in domain of "motion planning" and want to vizualize the planner that they have developed.
 
